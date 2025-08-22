@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=3 uid="uid://c0bee1b0ys7vr"]
 
-[ext_resource type="Script" uid="uid://5yoh7h0xts78" path="res://Player/player.gd" id="1_q3lat"]
+[ext_resource type="Script" uid="uid://5yoh7h0xts78" path="res://Scripts/player.gd" id="1_q3lat"]
 [ext_resource type="Texture2D" uid="uid://cew5wmcdqa8vs" path="res://assets/player/Fall_KG_1.png" id="2_6ysni"]
 [ext_resource type="Texture2D" uid="uid://dqfnlw8ecfypn" path="res://assets/player/Idle_KG_1.png" id="2_tok1r"]
 [ext_resource type="Texture2D" uid="uid://c4t5kp54uu5dm" path="res://assets/player/Jump_KG_1.png" id="3_8g4oa"]
@@ -187,3 +187,5 @@ scale = Vector2(2.08121, 2.48356)
 sprite_frames = SubResource("SpriteFrames_3qydi")
 animation = &"Fall"
 autoplay = "Idle"
+frame = 1
+frame_progress = 0.828453

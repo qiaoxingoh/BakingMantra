@@ -1,0 +1,126 @@
+[gd_scene load_steps=12 format=3 uid="uid://b7kvt1x4oltwp"]
+
+[ext_resource type="Texture2D" path="res://assets/level3/BG_01.png" id="1_4t7ew"]
+[ext_resource type="PackedScene" uid="uid://cep6vhc3562xl" path="res://Enemies/snow_cone_slime.tscn" id="1_absw3"]
+[ext_resource type="Script" uid="uid://bks06pcavt5kn" path="res://Scripts/ground.gd" id="2_padch"]
+[ext_resource type="Script" uid="uid://b1tj40r0k8q3k" path="res://Scripts/snow_cone_slime.gd" id="2_uwxw1"]
+[ext_resource type="PackedScene" uid="uid://codyvdlyk66pe" path="res://Obstacles/candy_icicle.tscn" id="3_uwxw1"]
+[ext_resource type="Texture2D" path="res://assets/level3/snow_54.png" id="5_oojpf"]
+[ext_resource type="Script" uid="uid://c245bal3i8twg" path="res://Scripts/candy_icicle.gd" id="5_uwxw1"]
+[ext_resource type="Texture2D" path="res://assets/level3/snow_55.png" id="6_7cdb2"]
+[ext_resource type="Script" uid="uid://1nsepgx6n0fr" path="res://Scripts/frost_berry.gd" id="6_ay5qi"]
+[ext_resource type="PackedScene" uid="uid://c0bee1b0ys7vr" path="res://Player/Player.tscn" id="13_7cdb2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ck3gp"]
+size = Vector2(664, 95)
+
+[node name="Level3_SnowCake" type="Node2D"]
+position = Vector2(77, -24)
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(563, 384)
+scale = Vector2(0.666667, 0.666667)
+texture = ExtResource("1_4t7ew")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="SnowConeSlime" parent="Enemies" instance=ExtResource("1_absw3")]
+script = ExtResource("2_uwxw1")
+
+[node name="Hitbox" type="Area2D" parent="Enemies/SnowConeSlime"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/SnowConeSlime/Hitbox"]
+
+[node name="Sprite2D2" type="Sprite2D" parent="Enemies/SnowConeSlime"]
+
+[node name="RayCast2D2" type="RayCast2D" parent="Enemies/SnowConeSlime"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Enemies/SnowConeSlime"]
+
+[node name="Ground" type="StaticBody2D" parent="."]
+script = ExtResource("2_padch")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(255, 695.5)
+shape = SubResource("RectangleShape2D_ck3gp")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+position = Vector2(-21, 695.6)
+scale = Vector2(0.873313, 0.74375)
+texture = ExtResource("5_oojpf")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Ground"]
+position = Vector2(90, 695.6)
+scale = Vector2(0.873313, 0.74375)
+texture = ExtResource("5_oojpf")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Ground"]
+position = Vector2(200, 695.6)
+scale = Vector2(0.873313, 0.74375)
+texture = ExtResource("5_oojpf")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Ground"]
+position = Vector2(311, 695.6)
+scale = Vector2(0.873313, 0.74375)
+texture = ExtResource("5_oojpf")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Ground"]
+position = Vector2(421, 695.6)
+scale = Vector2(0.873313, 0.74375)
+texture = ExtResource("5_oojpf")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Ground"]
+position = Vector2(532, 695.6)
+scale = Vector2(0.873313, 0.74375)
+texture = ExtResource("6_7cdb2")
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Platforms"]
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="CandyIcicle" parent="Obstacles" instance=ExtResource("3_uwxw1")]
+script = ExtResource("5_uwxw1")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Obstacles/CandyIcicle"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Obstacles/CandyIcicle"]
+
+[node name="DetectionZone" type="Area2D" parent="Obstacles/CandyIcicle"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/CandyIcicle/DetectionZone"]
+
+[node name="DamageArea" type="Area2D" parent="Obstacles/CandyIcicle"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/CandyIcicle/DamageArea"]
+
+[node name="Collectibles" type="Node2D" parent="."]
+
+[node name="FrostBerry" type="Area2D" parent="Collectibles"]
+script = ExtResource("6_ay5qi")
+
+[node name="Sprite2D" type="Sprite2D" parent="Collectibles/FrostBerry"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collectibles/FrostBerry"]
+
+[node name="FrostBerry1" type="Area2D" parent="Collectibles"]
+script = ExtResource("6_ay5qi")
+
+[node name="Sprite2D" type="Sprite2D" parent="Collectibles/FrostBerry1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collectibles/FrostBerry1"]
+
+[node name="FrostBerry2" type="Area2D" parent="Collectibles"]
+script = ExtResource("6_ay5qi")
+
+[node name="Sprite2D" type="Sprite2D" parent="Collectibles/FrostBerry2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collectibles/FrostBerry2"]
+
+[node name="Player" parent="." instance=ExtResource("13_7cdb2")]
+position = Vector2(-342, 111)
+
+[connection signal="body_entered" from="Enemies/SnowConeSlime/Hitbox" to="Enemies/SnowConeSlime" method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="Obstacles/CandyIcicle/DetectionZone" to="Enemies/SnowConeSlime" method="_on_detection_zone_body_entered"]
+[connection signal="body_entered" from="Obstacles/CandyIcicle/DamageArea" to="Enemies/SnowConeSlime" method="_on_damage_area_body_entered"]

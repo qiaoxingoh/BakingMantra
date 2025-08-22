@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://codyvdlyk66pe"]
+
+[node name="CandyIcicle" type="RigidBody2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

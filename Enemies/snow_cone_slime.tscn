@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://cep6vhc3562xl"]
+
+[ext_resource type="Texture2D" uid="uid://dqoxurahvcjql" path="res://assets/level3/enemy/Idle.png" id="1_ibgyf"]
+
+[sub_resource type="Animation" id="Animation_0n0ag"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_ibgyf")]
+}
+
+[sub_resource type="Animation" id="Animation_ibgyf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_ibgyf")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k8gs8"]
+_data = {
+&"RESET": SubResource("Animation_ibgyf"),
+&"idle": SubResource("Animation_0n0ag")
+}
+
+[node name="SnowConeSlime" type="CharacterBody2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_k8gs8")
+}
+autoplay = "idle"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(641.5, 332)
+scale = Vector2(0.521763, 0.653409)
+texture = ExtResource("1_ibgyf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
