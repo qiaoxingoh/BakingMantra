@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yh5mr0xl0wox"
-path="res://.godot/imported/Movment.png-ee44186d7f1bbe660cf23a3993857d45.ctex"
+uid="uid://dv8uowgyq6qsi"
+path="res://.godot/imported/Icicle.png-c7431b45a4952f0d0aff1ac566c03740.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/level3/enemy/Movment.png"
-dest_files=["res://.godot/imported/Movment.png-ee44186d7f1bbe660cf23a3993857d45.ctex"]
+source_file="res://assets/level3/obstacle/Icicle.png"
+dest_files=["res://.godot/imported/Icicle.png-c7431b45a4952f0d0aff1ac566c03740.ctex"]
 
 [params]
 

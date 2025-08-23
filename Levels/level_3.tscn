@@ -1,18 +1,32 @@
-[gd_scene load_steps=12 format=3 uid="uid://b7kvt1x4oltwp"]
+[gd_scene load_steps=18 format=3 uid="uid://b7kvt1x4oltwp"]
 
-[ext_resource type="Texture2D" path="res://assets/level3/BG_01.png" id="1_4t7ew"]
+[ext_resource type="Texture2D" uid="uid://jje0ail0ewrj" path="res://assets/level3/background/BG_01.png" id="1_4t7ew"]
 [ext_resource type="PackedScene" uid="uid://cep6vhc3562xl" path="res://Enemies/snow_cone_slime.tscn" id="1_absw3"]
 [ext_resource type="Script" uid="uid://bks06pcavt5kn" path="res://Scripts/ground.gd" id="2_padch"]
-[ext_resource type="Script" uid="uid://b1tj40r0k8q3k" path="res://Scripts/snow_cone_slime.gd" id="2_uwxw1"]
 [ext_resource type="PackedScene" uid="uid://codyvdlyk66pe" path="res://Obstacles/candy_icicle.tscn" id="3_uwxw1"]
-[ext_resource type="Texture2D" path="res://assets/level3/snow_54.png" id="5_oojpf"]
-[ext_resource type="Script" uid="uid://c245bal3i8twg" path="res://Scripts/candy_icicle.gd" id="5_uwxw1"]
-[ext_resource type="Texture2D" path="res://assets/level3/snow_55.png" id="6_7cdb2"]
+[ext_resource type="Texture2D" uid="uid://cwg6kblqx58re" path="res://assets/level3/background/snow_54.png" id="5_oojpf"]
+[ext_resource type="Texture2D" uid="uid://chukiahiddgrh" path="res://assets/level3/background/snow_55.png" id="6_7cdb2"]
 [ext_resource type="Script" uid="uid://1nsepgx6n0fr" path="res://Scripts/frost_berry.gd" id="6_ay5qi"]
+[ext_resource type="Texture2D" uid="uid://djbixm5a6nchp" path="res://assets/level3/background/snow_53.png" id="6_trpa2"]
+[ext_resource type="Texture2D" uid="uid://ckk4lgouxxj0k" path="res://assets/level3/background/snow_75.png" id="7_4t7ew"]
+[ext_resource type="Texture2D" uid="uid://caexovj0immxu" path="res://assets/level3/background/snow_61.png" id="8_7cdb2"]
+[ext_resource type="Texture2D" uid="uid://bvgv705c8arj3" path="res://assets/level3/background/snow_60.png" id="9_2urlj"]
 [ext_resource type="PackedScene" uid="uid://c0bee1b0ys7vr" path="res://Player/Player.tscn" id="13_7cdb2"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7cdb2"]
+size = Vector2(445, 40.4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4t7ew"]
+size = Vector2(22, 19.2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oojpf"]
+size = Vector2(14, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trpa2"]
+size = Vector2(665, 95)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ck3gp"]
-size = Vector2(664, 95)
+size = Vector2(553, 95)
 
 [node name="Level3_SnowCake" type="Node2D"]
 position = Vector2(77, -24)
@@ -25,23 +39,31 @@ texture = ExtResource("1_4t7ew")
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="SnowConeSlime" parent="Enemies" instance=ExtResource("1_absw3")]
-script = ExtResource("2_uwxw1")
-
-[node name="Hitbox" type="Area2D" parent="Enemies/SnowConeSlime"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/SnowConeSlime/Hitbox"]
-
-[node name="Sprite2D2" type="Sprite2D" parent="Enemies/SnowConeSlime"]
-
-[node name="RayCast2D2" type="RayCast2D" parent="Enemies/SnowConeSlime"]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Enemies/SnowConeSlime"]
+position = Vector2(-236, 149)
 
 [node name="Ground" type="StaticBody2D" parent="."]
 script = ExtResource("2_padch")
 
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Ground"]
+position = Vector2(981.392, 247.8)
+shape = SubResource("RectangleShape2D_7cdb2")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Ground"]
+position = Vector2(1036, 601)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_4t7ew")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Ground"]
+position = Vector2(704, 601)
+scale = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_oojpf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground"]
+position = Vector2(870.5, 696.5)
+shape = SubResource("RectangleShape2D_trpa2")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-position = Vector2(255, 695.5)
+position = Vector2(199.5, 695.5)
 shape = SubResource("RectangleShape2D_ck3gp")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ground"]
@@ -64,15 +86,70 @@ position = Vector2(311, 695.6)
 scale = Vector2(0.873313, 0.74375)
 texture = ExtResource("5_oojpf")
 
-[node name="Sprite2D5" type="Sprite2D" parent="Ground"]
-position = Vector2(421, 695.6)
+[node name="Sprite2D6" type="Sprite2D" parent="Ground"]
+position = Vector2(420, 695.6)
+scale = Vector2(0.873313, 0.74375)
+texture = ExtResource("6_7cdb2")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Ground"]
+position = Vector2(593, 696)
+scale = Vector2(0.873313, 0.74375)
+texture = ExtResource("6_trpa2")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Ground"]
+position = Vector2(815.892, 696.6)
 scale = Vector2(0.873313, 0.74375)
 texture = ExtResource("5_oojpf")
 
-[node name="Sprite2D6" type="Sprite2D" parent="Ground"]
-position = Vector2(532, 695.6)
+[node name="Sprite2D9" type="Sprite2D" parent="Ground"]
+position = Vector2(925.892, 696.6)
 scale = Vector2(0.873313, 0.74375)
-texture = ExtResource("6_7cdb2")
+texture = ExtResource("5_oojpf")
+
+[node name="Sprite2D10" type="Sprite2D" parent="Ground"]
+position = Vector2(1036.89, 696.6)
+scale = Vector2(0.873313, 0.74375)
+texture = ExtResource("7_4t7ew")
+
+[node name="Sprite2D12" type="Sprite2D" parent="Ground"]
+position = Vector2(704, 696)
+scale = Vector2(0.873313, 0.74375)
+texture = ExtResource("7_4t7ew")
+
+[node name="Sprite2D13" type="Sprite2D" parent="Ground"]
+position = Vector2(704, 601)
+scale = Vector2(0.873313, 0.74375)
+texture = ExtResource("5_oojpf")
+
+[node name="Sprite2D14" type="Sprite2D" parent="Ground"]
+position = Vector2(1037, 601)
+scale = Vector2(0.873, 0.756)
+texture = ExtResource("5_oojpf")
+
+[node name="Sprite2D11" type="Sprite2D" parent="Ground"]
+position = Vector2(1146.89, 696.6)
+scale = Vector2(0.873313, 0.74375)
+texture = ExtResource("5_oojpf")
+
+[node name="Sprite2D15" type="Sprite2D" parent="Ground"]
+position = Vector2(814.892, 274.6)
+scale = Vector2(0.873313, 0.74375)
+texture = ExtResource("8_7cdb2")
+
+[node name="Sprite2D16" type="Sprite2D" parent="Ground"]
+position = Vector2(1147.89, 274.6)
+scale = Vector2(0.873313, 0.74375)
+texture = ExtResource("9_2urlj")
+
+[node name="Sprite2D17" type="Sprite2D" parent="Ground"]
+position = Vector2(1036.89, 274.6)
+scale = Vector2(0.873313, 0.74375)
+texture = ExtResource("9_2urlj")
+
+[node name="Sprite2D18" type="Sprite2D" parent="Ground"]
+position = Vector2(925.892, 274.6)
+scale = Vector2(0.873313, 0.74375)
+texture = ExtResource("9_2urlj")
 
 [node name="Platforms" type="Node2D" parent="."]
 
@@ -81,19 +158,10 @@ texture = ExtResource("6_7cdb2")
 [node name="Obstacles" type="Node2D" parent="."]
 
 [node name="CandyIcicle" parent="Obstacles" instance=ExtResource("3_uwxw1")]
-script = ExtResource("5_uwxw1")
+position = Vector2(753, 201)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Obstacles/CandyIcicle"]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Obstacles/CandyIcicle"]
-
-[node name="DetectionZone" type="Area2D" parent="Obstacles/CandyIcicle"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/CandyIcicle/DetectionZone"]
-
-[node name="DamageArea" type="Area2D" parent="Obstacles/CandyIcicle"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/CandyIcicle/DamageArea"]
+[node name="CandyIcicle2" parent="Obstacles" instance=ExtResource("3_uwxw1")]
+position = Vector2(969, 202)
 
 [node name="Collectibles" type="Node2D" parent="."]
 
@@ -118,9 +186,5 @@ script = ExtResource("6_ay5qi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collectibles/FrostBerry2"]
 
-[node name="Player" parent="." instance=ExtResource("13_7cdb2")]
+[node name="Player" parent="." groups=["player"] instance=ExtResource("13_7cdb2")]
 position = Vector2(-342, 111)
-
-[connection signal="body_entered" from="Enemies/SnowConeSlime/Hitbox" to="Enemies/SnowConeSlime" method="_on_hitbox_body_entered"]
-[connection signal="body_entered" from="Obstacles/CandyIcicle/DetectionZone" to="Enemies/SnowConeSlime" method="_on_detection_zone_body_entered"]
-[connection signal="body_entered" from="Obstacles/CandyIcicle/DamageArea" to="Enemies/SnowConeSlime" method="_on_damage_area_body_entered"]

@@ -187,5 +187,3 @@ scale = Vector2(2.08121, 2.48356)
 sprite_frames = SubResource("SpriteFrames_3qydi")
 animation = &"Fall"
 autoplay = "Idle"
-frame = 1
-frame_progress = 0.828453

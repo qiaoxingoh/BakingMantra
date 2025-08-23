@@ -1,42 +1,84 @@
 # candy_icicle.gd
-extends RigidBody2D
+extends Area2D
 
-@export var fall_gravity: float = 3.0
-var has_fallen: bool = false
+@export var freeze_duration: float = 2.0
+@export var damage: int = 1
+@export var fall_gravity: float = 200.0  # Higher value for Area2D
+@export var fall_speed: float = 50.0
+
+var is_falling: bool = false
+var original_position: Vector2
+var velocity: Vector2 = Vector2.ZERO
+
+@onready var sprite = $AnimatedSprite2D
 
 func _ready():
-	# Start with no gravity
-	gravity_scale = 0.0
-	# Make sure it doesn't rotate randomly
-	freeze = true
+	# Save original position
+	original_position = global_position
+	
+	# MOVE DetectionZone - adjust as needed
+	$DetectionZone.position = Vector2(0, 3)
+	
+	# Play hanging animation
+	sprite.play("hang")
 
 func _on_detection_zone_body_entered(body):
-	if body.is_in_group("player") and !has_fallen:
+	if body.is_in_group("player") and not is_falling:
 		start_falling()
 
 func start_falling():
-	has_fallen = true
-	gravity_scale = fall_gravity
-	freeze = false  # Let physics take over
-	# Play cracking sound effect if you have one
-	print("Icicle falling!")
+	is_falling = true
 	
-	# Optional: Add a slight delay before enabling damage
-	await get_tree().create_timer(0.2).timeout
-	$DamageArea.monitoring = true
+	# Set initial velocity for falling
+	velocity = Vector2(0, fall_speed)
+	
+	# Play falling animation
+	sprite.play("fall")
+
+func _physics_process(delta):
+	if is_falling:
+		# Apply gravity and move manually
+		velocity.y += fall_gravity * delta
+		position.y += velocity.y * delta
+		
+		# Check if hit ground or went off-screen
+		if position.y > 1000:  # Adjust based on your screen size
+			shatter()
 
 func _on_damage_area_body_entered(body):
-	if body.is_in_group("player"):
-		body.take_damage(1)  # Hurt player
-		# Icicle breaks after hitting player
+	if body.is_in_group("player") and is_falling:
+		
+		# Damage player
+		if body.has_method("take_damage"):
+			body.take_damage(damage)
+		
+		# Freeze player
+		if body.has_method("freeze"):
+			body.freeze(freeze_duration)
+		
+		# Icicle shatters
 		shatter()
 
 func shatter():
-	# Play break animation/sound
-	print("Icicle shattered!")
-	# Disable collisions
-	$CollisionShape2D.disabled = true
-	$Sprite2D.hide()
-	# Remove after a delay
-	await get_tree().create_timer(0.3).timeout
-	queue_free()
+	# Play break animation
+	sprite.play("break")
+	
+	# Stop falling
+	is_falling = false
+	velocity = Vector2.ZERO
+	
+func _on_animated_sprite_2d_animation_finished():
+	if sprite.animation == "break":
+		queue_free()
+
+# Optional: Respawn functionality
+func respawn():
+	global_position = original_position
+	is_falling = false
+	velocity = Vector2.ZERO
+	sprite.play("hang")
+	
+	# Re-enable collisions
+	$CollisionShape2D.disabled = false
+	$DamageArea/CollisionShape2D.disabled = false
+	$DetectionZone/CollisionShape2D.disabled = false
